@@ -1,0 +1,14 @@
+version: '3'
+services:
+  python3:
+    restart: always
+    build: .
+    container_name: 'python3'
+    # working_dir: '/root/'
+    tty: true
+    devices:
+        - '/dev:/dev'
+    volumes:
+        - type: bind
+          source: ./
+          target: /code
