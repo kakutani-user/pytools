@@ -10,5 +10,5 @@ services:
         - '/dev:/dev'
     volumes:
         - type: bind
-          source: ./
+          source: ../
           target: /code

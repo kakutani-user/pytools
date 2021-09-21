@@ -12,7 +12,7 @@ ENV TERM xterm
 
 RUN mkdir /code
 WORKDIR /code
-ADD . /code/
+ADD ../ /code/
 
 RUN apt-get install -y vim less
 RUN pip install --upgrade pip
