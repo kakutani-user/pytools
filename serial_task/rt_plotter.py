@@ -11,12 +11,13 @@ import sys
 import datetime
 import csv
 
-DATA_NUM = 4
-SAMPLE_NUM = 10
+DATA_NUM = 3
+SAMPLE_NUM = 100
 YRANGE_MIN = 0
-YRANGE_MAX = 100
+YRANGE_MAX = 10
 
 exec_time = datetime.datetime.now()
+
 
 def select_port():
     ser = serial.Serial()
@@ -51,8 +52,9 @@ def select_port():
 
 class PlotWindow:
     def __init__(self):
+        self.ser = select_port()
         self.axi_num = DATA_NUM  # データ数
-        self.colors = [(255, 0, 0), (0, 255, 0), (0, 0, 255), (255, 255, 0), (255, 0, 255), (0, 255, 255), (255, 255, 255)]
+        self.colors = [(255, 0, 0), (0, 255, 0), (255, 255, 255), (255, 255, 0), (255, 0, 255), (0, 255, 255), (255, 255, 255)]
         # プロット初期設定
         self.win = pg.GraphicsWindow()
         self.win.setWindowTitle(u"リアルタイムプロット")
@@ -65,7 +67,6 @@ class PlotWindow:
         self.sample_num = SAMPLE_NUM
 
         # self.ser = serial.Serial(port='/dev/cu.usbmodem2123201', baudrate=115200, timeout=1)
-        self.ser = select_port()
 
         # アップデート時間設定
         self.timer = QtCore.QTimer()
